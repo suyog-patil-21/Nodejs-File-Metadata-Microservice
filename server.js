@@ -26,13 +26,14 @@ app.get("/", function (req, res) {
 app.post("/api/fileanalyse", upload.single("upfile"), (req, res) => {
   try {
     var filedata = req.file;
+    if(req.file)
     res.json({
       name: filedata.originalname,
       type: filedata.mimetype,
       size: filedata.size,
     });
   } catch (err) {
-    res.send(400);
+    res.end(400);
   }
 });
 
